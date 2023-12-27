@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
-    private ProductBSL productBsl;
+    public ProductBSL productBsl;
+
     public ProductController (ProductBSL productBsl)
     {
         this.productBsl = productBsl;
@@ -16,14 +17,22 @@ public class ProductController {
     {
         return productBsl.add(product);
     }
-
+    @PostMapping("/product/addd")
+    public String addProductt (@RequestBody Product product)
+    {
+        return productBsl.addProduct(product);
+    }
 
     @GetMapping("/product/{serialNumber}")
     public Product getProduct (@PathVariable ("serialNumber")  int serialNumber)
     {
         return productBsl.getProduct(serialNumber);
     }
-
+    @GetMapping("/product/search/{serialNumber}")
+    public Product searchProduct (@PathVariable ("serialNumber")  int serialNumber)
+    {
+        return productBsl.searchProduct(serialNumber);
+    }
 //    @GetMapping("/product")
 //    public Product getProduct ()
 //    {
