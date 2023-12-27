@@ -1,4 +1,7 @@
 package com.notification.notification_services.notificationManagment.notificationModules;
 
-public interface Template {
+import java.util.Map;
+
+public class SMS {
+    public static Map<String , Integer> SMSs;
 }
