@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CustomerController {
+    public CustomerController(Authorization authorization) {
+        this.authorization = authorization;}
     private Authorization authorization;
     @PostMapping(value = "/addCustomer")
     public String createAccount(@RequestBody Customer customer){
         return authorization.createAccount(customer);
     }
-    @GetMapping(value = "/loginCustomer/{userName,password}")
+    @GetMapping(value = "/loginCustomer/{userName}/{password}")
     public Customer login(@PathVariable("userName") String userName,@PathVariable("password") String password){
         return authorization.login(userName,password);
     }
