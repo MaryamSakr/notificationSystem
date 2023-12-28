@@ -1,5 +1,7 @@
 package com.notification.notification_services.ProductManagement.ProductModules;
 
+import java.util.Vector;
+
 public class Product {
 
     public int serialNumber;
@@ -57,4 +59,20 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+
+
+//    public static Vector<Product> products = new Vector<Product>();
+//
+//    static {
+//
+//        Product c = new Product("phone", 1, "111", "tec", 10000.0);
+//        products.add(c);
+//        Product c2 = new Product("headphone", 2, "111", "tec", 450);
+//        products.add(c2);
+//        Product c3 = new Product("jacket", 3, "222", "clothes", 500);
+//        products.add(c3);
+//        Product c4 = new Product("headphone", 4, "222", "tec", 450);
+//        products.add(c4);
+//
+//    }
 }
