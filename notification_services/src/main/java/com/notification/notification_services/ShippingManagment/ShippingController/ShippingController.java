@@ -11,14 +11,28 @@ public class ShippingController {
     public Location location;
     private shipping ship;
     @GetMapping("/shipfees/{area}/{street}/{city}")
-    public double shippingfees (@PathVariable("area") String area,@PathVariable("street") String street,@PathVariable("city") String city)
+    public double shippingfees ( @PathVariable("area") String area,
+                                 @PathVariable("street") String street,
+                                 @PathVariable("city") String city)
     {
-       location.setArea(area);
-       location.setStreet(street);
-        location.setCity(city);
+        Location location = new Location(area, street, city);
+//       location.setArea(area);
+//       location.setStreet(street);
+//        location.setCity(city);
         return ship.calcFees(location);
     }
 }
+
+
+
+//    @GetMapping("/shipfees/{area}/{street}/{city}")
+//    public double shippingfees (@PathVariable("area") String area,@PathVariable("street") String street,@PathVariable("city") String city)
+//    {
+//        location.setArea(area);
+//        location.setStreet(street);
+//        location.setCity(city);
+//        return ship.calcFees(location);
+//    }
 
 
 //@RestController
@@ -29,3 +43,7 @@ public class ShippingController {
 //        return shipping.calcFees(location);
 //    }
 //}
+
+
+
+
