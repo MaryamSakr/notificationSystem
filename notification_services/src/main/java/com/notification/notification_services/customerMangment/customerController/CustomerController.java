@@ -11,7 +11,7 @@ public class CustomerController {
     public String createAccount(@RequestBody Customer customer){
         return authorization.createAccount(customer);
     }
-    @GetMapping(value = "/loginCustomer/{userName,password}")
+    @GetMapping(value = "/loginCustomer/{userName}/{password}")
     public Customer login(@PathVariable("userName") String userName,@PathVariable("password") String password){
         return authorization.login(userName,password);
     }
