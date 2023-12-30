@@ -5,9 +5,10 @@ import java.util.List;
 public class CompoundOrder extends Order{
     private List<Order> orders;
 
-    CompoundOrder(int id) {
-        super(id);
+    public CompoundOrder() {
+        super();
     }
+
 
     public void setOrders(Order order) {
         this.orders.add(order);

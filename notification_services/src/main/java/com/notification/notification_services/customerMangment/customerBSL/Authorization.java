@@ -1,34 +1,28 @@
 package com.notification.notification_services.customerMangment.customerBSL;
 import com.notification.notification_services.customerMangment.customerModeles.Customer;
+import com.notification.notification_services.inMemoeryCustomer;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class Authorization {
-    private final List<Customer> accounts;
-
-    public Authorization() {
-        this.accounts = new ArrayList<>();
-    }
-
-
 
     public String createAccount(Customer customer){
 
-        for(Customer custmers:accounts){
+        for(Customer custmers: inMemoeryCustomer.customers){
             if (custmers.getUserName().equals(customer.getUserName())){
                 //System.out.println("this user name already exist");
                 return "this user name already exists";
             }
         }
-        accounts.add(customer);
+        inMemoeryCustomer.customers.add(customer);
         return "added successfully";
 
 
     }
     public Customer login(String userName,String password){
-        for(Customer custmer:accounts) {
+        for(Customer custmer:inMemoeryCustomer.customers) {
 
             if (custmer.getUserName().equals(userName) ){
                 if (custmer.getPassword().equals(password)) {

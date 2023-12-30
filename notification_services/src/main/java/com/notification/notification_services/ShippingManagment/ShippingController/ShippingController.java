@@ -16,10 +16,8 @@ public class ShippingController {
                                  @PathVariable("city") String city)
     {
         Location location = new Location(area, street, city);
-//       location.setArea(area);
-//       location.setStreet(street);
-//        location.setCity(city);
-        return ship.calcFees(location);
+        ship.setLocation(location);
+        return ship.calcFees();
     }
 }
 

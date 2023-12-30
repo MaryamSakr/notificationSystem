@@ -6,8 +6,8 @@ public class Customer {
     private String userName;
     private String password;
     private String phone="";
-    private double balance=100;
-    private Location location=null;
+    private double balance=1000;
+    private Location location;
     
     public Customer(){}
 
@@ -83,6 +83,12 @@ public class Customer {
         this.balance = balance;
     }
 
+    public Location getLocation() {
+        return location;
+    }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
 

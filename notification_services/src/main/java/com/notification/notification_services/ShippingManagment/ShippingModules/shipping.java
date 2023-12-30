@@ -8,8 +8,7 @@ public class shipping {
     public double fees;
 
 
-    public double calcFees(Location  location) {
-       this.location=location;
+    public double calcFees() {
 
        if (location.getCity() =="cairo")
        {
@@ -19,10 +18,14 @@ public class shipping {
        {
            fees=40;
        }
-      else if (location.getCity() =="tanta")
+      else
        {
            fees=100;
        }
       return fees;
    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
