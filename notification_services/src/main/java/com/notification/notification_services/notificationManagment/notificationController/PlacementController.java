@@ -1,7 +1,7 @@
 package com.notification.notification_services.notificationManagment.notificationController;
 
 import com.notification.notification_services.notificationManagment.notificationBSL.PlacementBSL;
-import com.notification.notification_services.notificationManagment.notificationModules.TemplateMod;
+import com.notification.notification_services.notificationManagment.notificationModules.PlacementMod;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -10,7 +10,8 @@ public class PlacementController {
     private final PlacementBSL p = new PlacementBSL();
 
     @PostMapping(value = "/placement")
-    public String GenerateNote(@RequestBody TemplateMod t){
-        return p.generateTemplate(t);
+    public String GenerateNote(@RequestBody PlacementMod place){
+        p.setPlace(place);
+        return p.generateTemplate();
     }
 }
