@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class CustomerController {
     private Authorization authorization;
+    public CustomerController(Authorization authorization) {
+        this.authorization = authorization;}
+    
     @PostMapping(value = "/addCustomer")
     public String createAccount(@RequestBody Customer customer){
         return authorization.createAccount(customer);

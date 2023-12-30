@@ -2,14 +2,14 @@ package com.notification.notification_services.customerMangment.customerModeles;
 
 
 public class Customer {
-    private String email;
+    private String email="";
     private String userName;
     private String password;
-    private String phone;
-
+    private String phone="";
     private double balance=100;
     private Location location=null;
-
+    
+    public Customer(){}
 
     public Customer(String email, String userName, String password, String phone,double balance) {
         this.email = email;
@@ -17,6 +17,28 @@ public class Customer {
         this.password = password;
         this.phone = phone;
         this.balance=balance;
+    }
+
+    public Customer(String email, String userName, String password, String phone) {
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public Customer(String email, String userName, String password) {
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public Customer(String email, String userName, String password, String phone, double balance, Location location) {
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.phone = phone;
+        this.balance=balance;
+        this.location=location;
     }
 
     public String getUserName() {
