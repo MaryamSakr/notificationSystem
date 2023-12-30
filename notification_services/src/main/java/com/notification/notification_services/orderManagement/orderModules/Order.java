@@ -27,7 +27,7 @@ public abstract class Order {
     public double getTotalPrice() {
         return totalPrice;
     }
-    public void setCustomerId(String customerName) {
+    public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
 
