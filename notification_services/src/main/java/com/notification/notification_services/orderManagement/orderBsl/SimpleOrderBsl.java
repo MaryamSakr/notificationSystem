@@ -38,6 +38,10 @@ public class SimpleOrderBsl extends OrderBsl{
         for (Product pro: inMemory.products) {
             for (Product product : simpleOrder.getProducts()) {
                 if (product.getName().equals(pro.getName())) {
+                    product.setSerialNumber(pro.getSerialNumber());
+                    product.setCategory(pro.getCategory());
+                    product.setPrice(pro.getPrice());
+                    product.setVendorId(pro.getVendorId());
                     price = price + pro.getPrice();
                 }
             }
@@ -53,7 +57,6 @@ public class SimpleOrderBsl extends OrderBsl{
         }
         simpleOrder.setId(inMemoryOrder.orders.get(inMemoryOrder.orders.size()-1).getId() +1 );
         System.out.println(simpleOrder.getId());
-        inMemoryOrder.orders.add(o);
         o.setTotalPrice(calcTotal());
         inMemoryOrder.orders.add(o);
         return "Added successfully";

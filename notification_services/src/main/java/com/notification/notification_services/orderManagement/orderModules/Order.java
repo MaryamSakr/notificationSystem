@@ -3,7 +3,7 @@ public abstract class Order {
     protected int id;
     protected double shipFees;
     protected double totalPrice;
-
+    protected String customerName;
     Order(){
         this.totalPrice = 0;
         this.shipFees = 0;
@@ -27,5 +27,11 @@ public abstract class Order {
     public double getTotalPrice() {
         return totalPrice;
     }
+    public void setCustomerId(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerName() {
+        return customerName;}
 
 }

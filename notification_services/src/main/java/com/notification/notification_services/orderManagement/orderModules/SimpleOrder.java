@@ -6,7 +6,7 @@ import java.util.List;
 @Getter
 public class SimpleOrder extends Order{
     private List<Product> products;
-    private String customerName;
+
     public SimpleOrder(String customerName, int totalPrice, int shipFees, List<Product> products) {
         this.customerName = customerName;
         this.totalPrice = totalPrice;
@@ -21,11 +21,6 @@ public class SimpleOrder extends Order{
         this.products = (products != null) ? new ArrayList<>(products) : new ArrayList<>();
     }
 
-    public void setCustomerId(String customerName) {
-        this.customerName = customerName;
-    }
 
-    public String getCustomerName() {
-        return customerName;}
 
 }
