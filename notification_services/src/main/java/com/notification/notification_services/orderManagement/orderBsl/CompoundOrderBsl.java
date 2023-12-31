@@ -5,6 +5,7 @@ import com.notification.notification_services.customerMangment.customerModeles.C
 import com.notification.notification_services.inMemoeryCustomer;
 import com.notification.notification_services.inMemory;
 import com.notification.notification_services.inMemoryOrder;
+import com.notification.notification_services.notificationManagment.notificationBSL.PlacementBSL;
 import com.notification.notification_services.orderManagement.orderModules.CompoundOrder;
 import com.notification.notification_services.orderManagement.orderModules.Order;
 import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
@@ -58,6 +59,11 @@ public class CompoundOrderBsl extends OrderBsl{
         }
         return price + shipPrice;
     }
+    public void note(CompoundOrder o){
+        PlacementBSL place = new PlacementBSL();
+        place.setO(o);
+        place.generateTemplate();
+    }
     @Override
     public String addOrder(Order order) {
         this.compoundOrder = (CompoundOrder) order;
@@ -69,6 +75,7 @@ public class CompoundOrderBsl extends OrderBsl{
         for (Order o : compoundOrder.getOrders()) {
             o.setId(compoundOrder.getId());
         }
+        note(compoundOrder);
         inMemoryOrder.orders.add(compoundOrder);
         return "Added successfully";
     }
