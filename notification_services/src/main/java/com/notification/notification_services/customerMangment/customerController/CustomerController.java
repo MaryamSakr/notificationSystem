@@ -18,4 +18,8 @@ public class CustomerController {
     public Customer login(@PathVariable("userName") String userName,@PathVariable("password") String password){
         return authorization.login(userName,password);
     }
+    @GetMapping("/allCustomers")
+    public List<Customer> getAllCustomer(){
+        return inMemoeryCustomer.customers;
+    }
 }
