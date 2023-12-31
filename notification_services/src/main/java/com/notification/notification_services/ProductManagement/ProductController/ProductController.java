@@ -35,7 +35,7 @@ public class ProductController {
     {
         return productBsl.searchProduct(serialNumber);
     }
-    @GetMapping("/all")
+    @GetMapping("/allProducts")
     public List<Product> getAllProducts() {
         return inMemory.products;
     }
