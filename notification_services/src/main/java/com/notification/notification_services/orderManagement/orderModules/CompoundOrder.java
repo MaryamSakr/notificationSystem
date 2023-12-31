@@ -10,14 +10,19 @@ public class CompoundOrder extends Order{
 
     public CompoundOrder() {
     }
-    public CompoundOrder(int totalPrice, int shipFees,List<Order> orders ){
+    public CompoundOrder(String customerName,int totalPrice, int shipFees,List<Order> orders ){
+        this.customerName = customerName;
         this.totalPrice = totalPrice;
         this.shipFees = shipFees;
-        this.orders=orders;
+        this.orders=(orders != null) ? new ArrayList<>(orders) : new ArrayList<>(); ;
     }
     public void setOrders(List<Order> orders) {
         this.orders = (orders != null) ? new ArrayList<>(orders) : new ArrayList<>();    }
     public List<Order> getOrders() {
         return orders;
+    }
+
+    public  void setTotalPrice(double totalPrice) {
+        super.setTotalPrice(totalPrice);
     }
 }

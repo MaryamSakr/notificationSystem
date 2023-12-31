@@ -3,7 +3,9 @@ import com.notification.notification_services.orderManagement.orderBsl.CompoundO
 import com.notification.notification_services.orderManagement.orderModules.CompoundOrder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class CompoundOrderController {
     private CompoundOrderBsl compoundOrderBsl = new CompoundOrderBsl();
     @PostMapping("/compoundOrder/add")

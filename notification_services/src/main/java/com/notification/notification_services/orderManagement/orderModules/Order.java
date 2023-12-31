@@ -4,9 +4,14 @@ public abstract class Order {
     protected double shipFees;
     protected double totalPrice;
     protected String customerName;
-    Order(){
+    public Order(){
         this.totalPrice = 0;
         this.shipFees = 0;
+    }
+    public Order(String customerName,int totalPrice,int shipFees){
+        this.customerName = customerName;
+        this.totalPrice = totalPrice;
+        this.shipFees = shipFees;
     }
     public void setShipFees(double shipFees) {
         this.shipFees = shipFees;

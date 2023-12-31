@@ -20,12 +20,13 @@ public class inMemoryOrder {
         orders.add(o2);
         ArrayList<Order> orders1 = new ArrayList<>();
         orders1.add(orders.get(1));
-        Order o3 = new CompoundOrder( 460, 10, orders1 );
+        Order o3 = new CompoundOrder("Maryam", 460, 10, orders1 );
         o3.setId(3);
         orders.add(o3);
         ArrayList<Order> orders2 = new ArrayList<>();
-        orders2.add(orders.get(2));
-        Order o4 = new CompoundOrder( 460, 10, orders2 );
+        orders2.add(orders.get(0));
+        orders2.add(orders.get(1));
+        Order o4 = new CompoundOrder( "Maryam",10460, 10, orders2 );
         o4.setId(4);
         orders.add(o4);
     }

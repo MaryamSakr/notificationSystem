@@ -21,22 +21,25 @@ public class CompoundOrderBsl extends OrderBsl{
     @Override
     public double calcTotal() {
         shipping ship = new shipping();
-        double price =0;
+        double price =0,shipPrice=0;
         for (Order o : compoundOrder.getOrders()) {
             SimpleOrder simpleOrder = (SimpleOrder) o;
             for (Customer customer : inMemoeryCustomer.customers) {
-                if(simpleOrder.getCustomerName().equals(customer.getUserName())){
+                this.flag=false;
+                if(simpleOrder.getCustomerName().equals(customer.getUserName()) && shipPrice == 0){
                     this.flag =true;
                     ship.setLocation(customer.getLocation());
-                    price = ship.calcFees();
-                    customer.setBalance(customer.getBalance()-price);
-                    break;
+                    shipPrice = ship.calcFees();
+                    customer.setBalance(customer.getBalance()-(shipPrice /compoundOrder.getOrders().size()));
+                } else if (shipPrice != 0 && simpleOrder.getCustomerName().equals(customer.getUserName())) {
+                    flag = true;
+                    customer.setBalance(customer.getBalance() - (shipPrice /compoundOrder.getOrders().size()));
                 }
             }
             if(!this.flag){
                 return 0;
             }
-            simpleOrder.setShipFees(price);
+            simpleOrder.setShipFees((shipPrice /compoundOrder.getOrders().size()));
             for (Product pro: inMemory.products) {
                 for (Product product : simpleOrder.getProducts()) {
                     if (product.getName().equals(pro.getName())) {
@@ -49,7 +52,7 @@ public class CompoundOrderBsl extends OrderBsl{
                 }
             }
         }
-        return price;
+        return price + shipPrice;
     }
     @Override
     public String addOrder(Order order) {
@@ -62,10 +65,10 @@ public class CompoundOrderBsl extends OrderBsl{
             }
             simpleOrder.setId(inMemoryOrder.orders.get(inMemoryOrder.orders.size()-1).getId() +1 );
             System.out.println(simpleOrder.getId());
-            inMemoryOrder.orders.add(o);
-            o.setTotalPrice(calcTotal());
-            inMemoryOrder.orders.add(o);
+            simpleOrder.setTotalPrice(calcTotal());
         }
+        compoundOrder.setId(inMemoryOrder.orders.get(inMemoryOrder.orders.size()-1).getId() +1 );
+        inMemoryOrder.orders.add(compoundOrder);
         return "Added successfully";
     }
 

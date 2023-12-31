@@ -3,6 +3,7 @@ package com.notification.notification_services.notificationManagment.notificatio
 import com.notification.notification_services.customerMangment.customerModeles.Customer;
 import com.notification.notification_services.inMemoeryCustomer;
 import com.notification.notification_services.notificationManagment.notificationModules.TemplateMod;
+import com.notification.notification_services.orderManagement.orderModules.Order;
 import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
 import org.springframework.stereotype.Service;
 
