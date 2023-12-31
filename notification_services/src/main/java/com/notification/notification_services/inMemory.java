@@ -17,8 +17,6 @@ public class inMemory {
         products.add(c2);
         Product c3 = new Product("jacket", 3, "222", "clothes", 500);
         products.add(c3);
-        Product c4 = new Product("headphone", 4, "111", "tec", 450);
-        products.add(c4);
         Product c5 = new Product("hat", 5, "222", "clothes", 150);
         products.add(c5);
         Product c6 = new Product("fridge", 6, "333", "home cadgets", 15000);

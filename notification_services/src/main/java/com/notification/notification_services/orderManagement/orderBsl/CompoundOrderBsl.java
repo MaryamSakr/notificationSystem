@@ -22,24 +22,20 @@ public class CompoundOrderBsl extends OrderBsl{
     public double calcTotal() {
         shipping ship = new shipping();
         double price =0,shipPrice=0;
+        for (Customer customer : inMemoeryCustomer.customers) {
+            if(compoundOrder.getCustomerName().equals(customer.getUserName())){
+                this.flag =true;
+                ship.setLocation(customer.getLocation());
+                shipPrice = ship.calcFees();
+            }
+        }
+        compoundOrder.setShipFees(shipPrice);
+        if(!this.flag){
+            return 0;
+        }
         for (Order o : compoundOrder.getOrders()) {
             SimpleOrder simpleOrder = (SimpleOrder) o;
-            for (Customer customer : inMemoeryCustomer.customers) {
-                this.flag=false;
-                if(simpleOrder.getCustomerName().equals(customer.getUserName()) && shipPrice == 0){
-                    this.flag =true;
-                    ship.setLocation(customer.getLocation());
-                    shipPrice = ship.calcFees();
-                    customer.setBalance(customer.getBalance()-(shipPrice /compoundOrder.getOrders().size()));
-                } else if (shipPrice != 0 && simpleOrder.getCustomerName().equals(customer.getUserName())) {
-                    flag = true;
-                    customer.setBalance(customer.getBalance() - (shipPrice /compoundOrder.getOrders().size()));
-                }
-            }
-            if(!this.flag){
-                return 0;
-            }
-            simpleOrder.setShipFees((shipPrice /compoundOrder.getOrders().size()));
+            double priceOne=0;
             for (Product pro: inMemory.products) {
                 for (Product product : simpleOrder.getProducts()) {
                     if (product.getName().equals(pro.getName())) {
@@ -48,29 +44,32 @@ public class CompoundOrderBsl extends OrderBsl{
                         product.setPrice(pro.getPrice());
                         product.setVendorId(pro.getVendorId());
                         price = price + pro.getPrice();
+                        priceOne = priceOne + pro.getPrice();
                     }
                 }
             }
+            for (Customer customer : inMemoeryCustomer.customers) {
+                if(simpleOrder.getCustomerName().equals(customer.getUserName())){
+                    customer.setBalance(customer.getBalance() - (shipPrice / compoundOrder.getOrders().size()));
+                }
+            }
+            o.setShipFees((shipPrice / compoundOrder.getOrders().size()));
+            o.setTotalPrice(priceOne + o.getShipFees());
         }
         return price + shipPrice;
     }
     @Override
     public String addOrder(Order order) {
         this.compoundOrder = (CompoundOrder) order;
-        for (Order o : compoundOrder.getOrders()) {
-            SimpleOrder simpleOrder = (SimpleOrder) o;
-            simpleOrder.setTotalPrice(calcTotal());
-            if(!this.flag){
-                return simpleOrder.getCustomerName()+" doesn't exist";
-            }
-            simpleOrder.setId(inMemoryOrder.orders.get(inMemoryOrder.orders.size()-1).getId() +1 );
-            System.out.println(simpleOrder.getId());
-            simpleOrder.setTotalPrice(calcTotal());
+        compoundOrder.setTotalPrice(calcTotal());
+        if(!this.flag){
+            return compoundOrder.getCustomerName()+" doesn't exist";
         }
         compoundOrder.setId(inMemoryOrder.orders.get(inMemoryOrder.orders.size()-1).getId() +1 );
+        for (Order o : compoundOrder.getOrders()) {
+            o.setId(compoundOrder.getId());
+        }
         inMemoryOrder.orders.add(compoundOrder);
         return "Added successfully";
     }
-
-
 }

@@ -70,10 +70,9 @@ public class SimpleOrderBsl extends OrderBsl{
             return simpleOrder.getCustomerName()+" doesn't exist";
         }
         simpleOrder.setId(inMemoryOrder.orders.get(inMemoryOrder.orders.size()-1).getId() +1 );
-        o.setTotalPrice(calcTotal());
-            note((SimpleOrder) o);
+            note(simpleOrder);
 
-        inMemoryOrder.orders.add(o);
+        inMemoryOrder.orders.add(simpleOrder);
 
 
         return "Added successfully";
