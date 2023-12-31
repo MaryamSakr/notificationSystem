@@ -29,19 +29,7 @@ public class SimpleOrderBsl extends OrderBsl{
     @Override
     public double calcTotal() {
         shipping ship = new shipping();
-        double price =0;
-        for (Customer customer : inMemoeryCustomer.customers) {
-            if(simpleOrder.getCustomerName().equals(customer.getUserName())){
-                this.flag =true;
-                ship.setLocation(customer.getLocation());
-                price = ship.calcFees();
-                customer.setBalance(customer.getBalance()-price);
-            }
-        }
-        if(!this.flag){
-            return 0;
-        }
-        simpleOrder.setShipFees(price);
+        double price =0,shipPrice=0;
         for (Product pro: inMemory.products) {
             for (Product product : simpleOrder.getProducts()) {
                 if (product.getName().equals(pro.getName())) {
@@ -53,6 +41,21 @@ public class SimpleOrderBsl extends OrderBsl{
                 }
             }
         }
+        for (Customer customer : inMemoeryCustomer.customers) {
+            if(simpleOrder.getCustomerName().equals(customer.getUserName())){
+                this.flag =true;
+                ship.setLocation(customer.getLocation());
+                shipPrice = ship.calcFees();
+                if(shipPrice+price > customer.getBalance()){
+                    return -1;
+                }
+                customer.setBalance(customer.getBalance() - (price+shipPrice));
+            }
+        }
+        if(!this.flag){
+            return 0;
+        }
+        simpleOrder.setShipFees(shipPrice);
         return price;
     }
 
@@ -65,6 +68,9 @@ public class SimpleOrderBsl extends OrderBsl{
     public String addOrder(Order o){
 
         simpleOrder = (SimpleOrder) o;
+        if(calcTotal() == -1){
+            return "the balance is less than the order cost";
+        }
         simpleOrder.setTotalPrice(calcTotal());
         if(!this.flag){
             return simpleOrder.getCustomerName()+" doesn't exist";

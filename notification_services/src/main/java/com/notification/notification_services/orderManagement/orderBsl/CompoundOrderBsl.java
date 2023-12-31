@@ -23,9 +23,11 @@ public class CompoundOrderBsl extends OrderBsl{
     public double calcTotal() {
         shipping ship = new shipping();
         double price =0,shipPrice=0;
+        String area = null;
         for (Customer customer : inMemoeryCustomer.customers) {
             if(compoundOrder.getCustomerName().equals(customer.getUserName())){
                 this.flag =true;
+                area = customer.getLocation().getArea();
                 ship.setLocation(customer.getLocation());
                 shipPrice = ship.calcFees();
             }
@@ -51,7 +53,13 @@ public class CompoundOrderBsl extends OrderBsl{
             }
             for (Customer customer : inMemoeryCustomer.customers) {
                 if(simpleOrder.getCustomerName().equals(customer.getUserName())){
-                    customer.setBalance(customer.getBalance() - (shipPrice / compoundOrder.getOrders().size()));
+                    if(!area .equals(customer.getLocation().getArea())){
+                        return -1;
+                    }
+                    if(customer.getBalance() < (shipPrice / compoundOrder.getOrders().size() + priceOne)){
+                        return -2;
+                    }
+                    customer.setBalance(customer.getBalance() - (shipPrice / compoundOrder.getOrders().size() + priceOne));
                 }
             }
             o.setShipFees((shipPrice / compoundOrder.getOrders().size()));
@@ -67,6 +75,12 @@ public class CompoundOrderBsl extends OrderBsl{
     @Override
     public String addOrder(Order order) {
         this.compoundOrder = (CompoundOrder) order;
+        if(calcTotal() == -1){
+            return "the area is diffrent";
+        }
+        if(calcTotal() == -2){
+            return "one customer balance is less than his order cost";
+        }
         compoundOrder.setTotalPrice(calcTotal());
         if(!this.flag){
             return compoundOrder.getCustomerName()+" doesn't exist";
