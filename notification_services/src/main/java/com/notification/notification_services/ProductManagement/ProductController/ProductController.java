@@ -16,7 +16,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/addInMemory")
-    public String addProducttnMemory (@RequestBody Product product)
+    public String addProductnMemory (@RequestBody Product product)
     {
         return productBsl.addProduct(product);
     }
@@ -29,18 +29,5 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return inMemory.products;
     }
-
-
-    @PostMapping("/product/add")
-    public String addProduct (@RequestBody Product product)
-    {
-        return productBsl.add(product);
-    }
-    @GetMapping("/product/{serialNumber}")
-    public Product getProduct (@PathVariable ("serialNumber")  int serialNumber)
-    {
-        return productBsl.getProduct(serialNumber);
-    }
-
 
 }
