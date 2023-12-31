@@ -17,8 +17,13 @@ public class ProductBSL {
 
     public String addProduct(Product product)
     {
+        for (Product product1 : inMemory.products){
+            if(product.getName().equals(product1.getName())){
+                return "this product is already exist";
+            }
+        }
         inMemory.products.add(product);
-        return "done";
+        return "Added successfully";
     }
 
     // Search for products in inMemory based on serialNumber

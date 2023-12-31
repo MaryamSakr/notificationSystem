@@ -10,7 +10,7 @@ public class ShipmentMod extends TemplateMod{
 
     public ShipmentMod() {
         Random r = new Random();
-        Duration = r.nextInt(10);
+        Duration = r.nextInt(1,10);
     }
 
     public String getName() {

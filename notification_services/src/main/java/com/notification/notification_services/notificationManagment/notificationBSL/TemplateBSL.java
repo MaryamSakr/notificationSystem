@@ -38,15 +38,21 @@ public abstract class TemplateBSL {
 
     public void popFromQueue(String note , String type){
         ChannelBSL p ;
-        for (Customer customer : inMemoeryCustomer.customers) {
-            if (o.getCustomerName().equals(customer.getUserName())) {
-                p = customer.getChannel();
-                p.send(note , o);
-                break;
-            }
+        if(o == null){
+            countElements(type);
+            TemplateMod.notifications.remove(note);
         }
-        countElements(type);
-        TemplateMod.notifications.remove(note);
+        else {
+            for (Customer customer : inMemoeryCustomer.customers) {
+                if (o.getCustomerName().equals(customer.getUserName())) {
+                    p = customer.getChannel();
+                    p.send(note , o);
+                    break;
+                }
+            }
+            countElements(type);
+            TemplateMod.notifications.remove(note);
+        }
     }
 
 
