@@ -21,18 +21,18 @@ public class Authorization {
 
 
     }
-    public Customer login(String userName,String password){
+    public String login(String userName,String password){
         for(Customer custmer:inMemoeryCustomer.customers) {
 
             if (custmer.getUserName().equals(userName) ){
                 if (custmer.getPassword().equals(password)) {
                     System.out.println("successful login ");
-                    return custmer;
+                    return "successful login ";
                 }
-                return null;
+                return "wrong password";
             }
         }
-        return null;
+        return "not exist";
     }
 }
 

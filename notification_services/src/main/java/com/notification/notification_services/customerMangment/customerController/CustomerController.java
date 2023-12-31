@@ -18,7 +18,7 @@ public class CustomerController {
         return authorization.createAccount(customer);
     }
     @GetMapping(value = "/loginCustomer/{userName}/{password}")
-    public Customer login(@PathVariable("userName") String userName,@PathVariable("password") String password){
+    public String login(@PathVariable("userName") String userName,@PathVariable("password") String password){
         return authorization.login(userName,password);
     }
     @GetMapping("/allCustomers")
