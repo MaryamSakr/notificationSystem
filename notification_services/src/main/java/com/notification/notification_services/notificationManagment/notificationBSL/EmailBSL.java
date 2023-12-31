@@ -1,7 +1,8 @@
 package com.notification.notification_services.notificationManagment.notificationBSL;
+
 import com.notification.notification_services.customerMangment.customerModeles.Customer;
-import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
 import com.notification.notification_services.inMemoeryCustomer;
+import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

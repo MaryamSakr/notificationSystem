@@ -2,7 +2,9 @@ package com.notification.notification_services.notificationManagment.notificatio
 
 import com.notification.notification_services.notificationManagment.notificationBSL.PlacementBSL;
 import com.notification.notification_services.notificationManagment.notificationModules.PlacementMod;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
