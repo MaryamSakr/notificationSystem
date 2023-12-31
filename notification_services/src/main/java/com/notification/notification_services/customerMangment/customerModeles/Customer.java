@@ -1,6 +1,11 @@
 package com.notification.notification_services.customerMangment.customerModeles;
 
 
+import com.notification.notification_services.notificationManagment.notificationBSL.ChannelBSL;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
     private String email="";
     private String userName;
@@ -8,6 +13,7 @@ public class Customer {
     private String phone="";
     private double balance=1000;
     private Location location;
+    private List<ChannelBSL> channel = new ArrayList<>();
     
     public Customer(){}
 

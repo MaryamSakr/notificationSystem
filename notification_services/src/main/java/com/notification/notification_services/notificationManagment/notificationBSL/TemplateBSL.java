@@ -1,6 +1,8 @@
 package com.notification.notification_services.notificationManagment.notificationBSL;
 
 import com.notification.notification_services.notificationManagment.notificationModules.TemplateMod;
+import com.notification.notification_services.orderManagement.orderModules.Order;
+import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -16,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class TemplateBSL {
      public static Map<Object, Integer> elementCountMap = new HashMap<>();
     public abstract String generateTemplate();
+    public SimpleOrder s;
 
 
     public static void countElements(String ele) {
@@ -31,7 +34,7 @@ public abstract class TemplateBSL {
         ChannelBSL ch = new EmailBSL();
         countElements(type);
         TemplateMod.notifications.remove(note);
-        return ch.send(note);
+        return ch.send(note , s);
     }
 
 
@@ -41,6 +44,11 @@ public abstract class TemplateBSL {
 
     }
 
+
+    public Map<Object, Integer> dis(){
+        return elementCountMap;
+
+    }
 
 
 }
