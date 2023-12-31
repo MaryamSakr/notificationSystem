@@ -14,21 +14,11 @@ public class ProductController {
     {
         this.productBsl = productBsl;
     }
-    @PostMapping("/product/add")
-    public String addProduct (@RequestBody Product product)
-    {
-        return productBsl.add(product);
-    }
-    @PostMapping("/product/addd")
-    public String addProductt (@RequestBody Product product)
+
+    @PostMapping("/product/addInMemory")
+    public String addProducttnMemory (@RequestBody Product product)
     {
         return productBsl.addProduct(product);
-    }
-
-    @GetMapping("/product/{serialNumber}")
-    public Product getProduct (@PathVariable ("serialNumber")  int serialNumber)
-    {
-        return productBsl.getProduct(serialNumber);
     }
     @GetMapping("/product/search/{serialNumber}")
     public Product searchProduct (@PathVariable ("serialNumber")  int serialNumber)
@@ -40,15 +30,17 @@ public class ProductController {
         return inMemory.products;
     }
 
-//    @GetMapping("/product")
-//    public Product getProduct ()
-//    {
-//        return productBsl.getProduct();
-//    }
 
-//    @GetMapping("/product/{name}")
-//    public Product getProduct (@PathVariable ("name")  String name)
-//    {
-//        return productBsl.getProductname(name);
-//    }
+    @PostMapping("/product/add")
+    public String addProduct (@RequestBody Product product)
+    {
+        return productBsl.add(product);
+    }
+    @GetMapping("/product/{serialNumber}")
+    public Product getProduct (@PathVariable ("serialNumber")  int serialNumber)
+    {
+        return productBsl.getProduct(serialNumber);
+    }
+
+
 }
