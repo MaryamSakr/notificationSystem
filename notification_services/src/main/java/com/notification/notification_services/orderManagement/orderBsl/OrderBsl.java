@@ -1,6 +1,7 @@
 package com.notification.notification_services.orderManagement.orderBsl;
 import com.notification.notification_services.orderManagement.orderModules.Order;
 import com.notification.notification_services.inMemoryOrder;
+import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
 import org.springframework.stereotype.Service;
 @Service
 public abstract class OrderBsl {

@@ -18,11 +18,6 @@ public class TemplateController {
         return t.display();
     }
 
-//    @GetMapping(value = "/stat")
-//    public String stat(){
-//        return t.generateTemplate();
-//    }
-
     @GetMapping(value = "/Dis")
     public Map<Object, Integer> dis(){
         return TemplateBSL.elementCountMap;

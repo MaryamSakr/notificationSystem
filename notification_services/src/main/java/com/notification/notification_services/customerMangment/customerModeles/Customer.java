@@ -13,38 +13,43 @@ public class Customer {
     private String phone="";
     private double balance=1000;
     private Location location;
-    private List<ChannelBSL> channel = new ArrayList<>();
+    private ChannelBSL channel ;
     
     public Customer(){}
 
-    public Customer(String email, String userName, String password, String phone,double balance) {
+    public Customer(String email, String userName, String password, String phone,double balance , ChannelBSL ch) {
         this.email = email;
         this.userName = userName;
         this.password = password;
         this.phone = phone;
         this.balance=balance;
+        this.channel = ch.getChannelType();
     }
 
-    public Customer(String email, String userName, String password, String phone) {
+    public Customer(String email, String userName, String password, String phone , ChannelBSL ch) {
         this.email = email;
         this.userName = userName;
         this.password = password;
         this.phone = phone;
+        this.channel = ch.getChannelType();
     }
 
-    public Customer(String email, String userName, String password) {
+    public Customer(String email, String userName, String password ,ChannelBSL ch) {
         this.email = email;
         this.userName = userName;
         this.password = password;
+        this.channel = ch.getChannelType();
+
     }
 
-    public Customer(String email, String userName, String password, String phone, double balance, Location location) {
+    public Customer(String email, String userName, String password, String phone, double balance, Location location , ChannelBSL ch) {
         this.email = email;
         this.userName = userName;
         this.password = password;
         this.phone = phone;
         this.balance=balance;
         this.location=location;
+        this.channel = ch.getChannelType();
     }
 
     public String getUserName() {
@@ -60,6 +65,13 @@ public class Customer {
     }
 
 
+    public ChannelBSL getChannel() {
+        return channel.getChannelType();
+    }
+
+    public void setChannel(ChannelBSL channel) {
+        this.channel = channel;
+    }
 
     public double getBalance() {
         return balance;

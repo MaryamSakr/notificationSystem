@@ -5,9 +5,16 @@ import com.notification.notification_services.customerMangment.customerModeles.C
 import com.notification.notification_services.inMemoeryCustomer;
 import com.notification.notification_services.inMemory;
 import com.notification.notification_services.inMemoryOrder;
+import com.notification.notification_services.notificationManagment.notificationBSL.PlacementBSL;
+import com.notification.notification_services.notificationManagment.notificationBSL.ShipmentBSL;
 import com.notification.notification_services.orderManagement.orderModules.Order;
 import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 @Service
 public class SimpleOrderBsl extends OrderBsl{
     private SimpleOrder simpleOrder ;
@@ -48,8 +55,15 @@ public class SimpleOrderBsl extends OrderBsl{
         }
         return price;
     }
+
+    public void note(SimpleOrder o){
+        PlacementBSL place = new PlacementBSL();
+        place.setO(o);
+        place.generateTemplate();
+    }
     @Override
     public String addOrder(Order o){
+
         simpleOrder = (SimpleOrder) o;
         simpleOrder.setTotalPrice(calcTotal());
         if(!this.flag){
@@ -58,7 +72,15 @@ public class SimpleOrderBsl extends OrderBsl{
         simpleOrder.setId(inMemoryOrder.orders.get(inMemoryOrder.orders.size()-1).getId() +1 );
         System.out.println(simpleOrder.getId());
         o.setTotalPrice(calcTotal());
+            note((SimpleOrder) o);
+
         inMemoryOrder.orders.add(o);
+
+
         return "Added successfully";
     }
+
 }
+
+
+

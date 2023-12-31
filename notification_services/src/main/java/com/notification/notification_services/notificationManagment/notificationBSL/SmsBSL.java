@@ -2,6 +2,7 @@ package com.notification.notification_services.notificationManagment.notificatio
 
 import com.notification.notification_services.customerMangment.customerModeles.Customer;
 import com.notification.notification_services.inMemoeryCustomer;
+import com.notification.notification_services.orderManagement.orderModules.Order;
 import com.notification.notification_services.orderManagement.orderModules.SimpleOrder;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,20 @@ public class SmsBSL extends ChannelBSL{
         }
     }
     @Override
-    public String send(String note , SimpleOrder s) {
+    public String send(String note , Order s) {
         String p = "";
         for (Customer customer : inMemoeryCustomer.customers) {
             if(s.getCustomerName().equals(customer.getUserName())){
                 p = customer.getPhone();
+                break;
             }
         }
         updateElementCount(p);
         return note + " Message Send Successfully Throw SMS";
     }
 
-
+    @Override
+    public ChannelBSL getChannelType() {
+        return new SmsBSL();
+    }
 }

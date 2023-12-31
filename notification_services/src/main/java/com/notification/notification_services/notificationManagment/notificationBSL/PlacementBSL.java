@@ -24,13 +24,10 @@ public class PlacementBSL extends TemplateBSL{
 
     public String generateTemplate() {
         String notification;
-//        PlacementBSL p = new PlacementBSL();
         notification = "Dear "+place.getName()+" , your booking of the " +place.getObj()+ " is confirmed and you will get notification when it shipped soon";
         TemplateMod.notifications.add(notification);
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.schedule(() -> popFromQueue(notification , "Placement"), 10, TimeUnit.SECONDS);
-
-
         return notification;
     }
 
